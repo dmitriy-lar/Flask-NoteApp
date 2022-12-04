@@ -1,0 +1,37 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <div class="h2 fw-bold">
+                Изменение заметки
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3 mt-3">
+            <div class="card bg-dark">
+                <div class="card-header">
+                    <a href="{{ url_for('notes.notes_list') }}" class="btn btn-secondary"><i
+                            class="bi bi-arrow-bar-left"></i> Назад</a>
+                </div>
+                <div class="col-8 offset-2">
+                    <form method="post" class="text-center">
+                    {{ form.hidden_tag() }}
+                    {{ form.title.label() }}
+                    {{ form.title(class_="form-control mb-2") }}
+
+                    {{ form.description.label() }}
+                    {{ form.description(class_="form-control mb-2", rows=9) }}
+
+                    <button class="btn btn-secondary" type="submit">
+                        Изменить
+                    </button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}
+Регистрация
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col mt-5">
+            <div class="display-6 text-center mt-5">
+                Регистрация
+                <div class="lead mt-2">
+                    <a href="{{ url_for('accounts.signin_user') }}" class="btn btn-secondary" style="color: white;">
+                        Уже есть аккаунт?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3 mt-5">
+            <div class="text-center">
+                {% if form.errors %}
+                {% for error in form.errors.values() %}
+                {% for e in error %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ e }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+
+                {% endfor %}
+
+                {% endif %}
+                <form method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.username.label() }}
+                    {{ form.username(class_="form-control mb-2") }}
+
+                    {{ form.password1.label() }}
+                    {{ form.password1(class_="form-control mb-2") }}
+
+                    {{ form.password2.label() }}
+                    {{ form.password2(class_="form-control mb-3") }}
+
+
+                    <button class="btn btn-secondary" type="submit">
+                        Зарегистрироваться
+                    </button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

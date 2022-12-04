@@ -1,0 +1,50 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}
+Авторизация
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col mt-5">
+            <div class="display-6 text-center mt-5">
+                Авторизация
+                <div class="lead mt-2">
+                    <a href="{{ url_for('accounts.register_user') }}" class="btn btn-secondary" style="color: white;">
+                        Еще нет аккаунта?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3 mt-5">
+            <div class="text-center">
+                {% with messages = get_flashed_messages(true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <form method="post">
+
+                    {{ form.hidden_tag() }}
+                    {{ form.username.label() }}
+                    {{ form.username(class_="form-control mb-2") }}
+
+                    {{ form.password.label() }}
+                    {{ form.password(class_="form-control mb-2") }}
+                    <button class="btn btn-secondary" type="submit">
+                        Войти
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
